@@ -1,4 +1,4 @@
-# create-site-cli-commander
+# @julseb-lib/julseb-cli
 
 A CLI tool to generate boilerplate projects using @julseb-lib/react, with support for text replacement, project setup, and more.
 
