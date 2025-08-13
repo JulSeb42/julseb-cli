@@ -1,26 +1,24 @@
 {
 	"name": "@julseb-lib/julseb-cli",
-	"version": "0.1.0",
+	"version": "0.1.11",
 	"description": "CLI to scaffold a website from GitHub boilerplates",
 	"main": "cli.ts",
-	"private": "false",
 	"bin": {
 		"julseb-cli": "./dist/cli.js"
 	},
 	"type": "module",
 	"scripts": {
 		"start": "tsx cli.ts",
-		"build": "tsc && cp -a ./utils/templates ./dist/utils/templates && chmod +x dist/cli.js",
-		"plop": "cross-env NODE_OPTIONS='--import tsx' plop --plopfile=plop/plopfile.ts"
+		"prepublishOnly": "tsc"
 	},
 	"dependencies": {
+		"@julseb-lib/utils": "^0.0.16",
 		"cli-welcome": "^3.0.0",
 		"commander": "^11.0.0",
 		"degit": "^2.8.0",
 		"prompts": "^2.4.2"
 	},
 	"devDependencies": {
-		"@julseb-lib/utils": "^0.0.16",
 		"@types/figlet": "^1.7.0",
 		"@types/node": "^20.0.0",
 		"@types/prompts": "^2.4.0",

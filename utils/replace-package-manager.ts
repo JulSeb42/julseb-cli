@@ -1,6 +1,7 @@
 import { execSync } from "child_process"
 import { slugify } from "@julseb-lib/utils"
 import { packageManagers } from "./consts.js"
+import { cliPath } from "./cli-path.js"
 
 export const replacePackageManager = (
 	projectName: string,
@@ -12,36 +13,26 @@ export const replacePackageManager = (
 	)
 
 	execSync(
-		`node dist/cli.js replace ${slugify(
-			projectName
-		)}/package.json "pnpm" "${packageManagers[manager].runCommand}"`,
-		{ stdio: "inherit" }
+		`node "${cliPath}" replace package.json "pnpm" "${packageManagers[manager].runCommand}"`,
+		{ stdio: "inherit", cwd: projectName }
 	)
 
 	execSync(
-		`node dist/cli.js replace ${slugify(
-			projectName
-		)}/client/package.json "pnpm" "${packageManagers[manager].runCommand}"`,
-		{ stdio: "inherit" }
+		`node "${cliPath}" replace client/package.json "pnpm" "${packageManagers[manager].runCommand}"`,
+		{ stdio: "inherit", cwd: projectName }
 	)
 
 	if (isExpress) {
 		execSync(
-			`node dist/cli.js replace ${slugify(
-				projectName
-			)}/server/seed/seed.ts "pnpm" "${
-				packageManagers[manager].runCommand
-			}"`,
-			{ stdio: "inherit" }
+			`node "${cliPath}" replace server/seed/seed.ts "pnpm" "${packageManagers[manager].runCommand}"`,
+			{ stdio: "inherit", cwd: projectName }
 		)
 	}
 
 	if (manager === 1) {
 		execSync(
-			`node dist/cli.js replace ${slugify(
-				projectName
-			)}/package.json "npm run install" "npm install"`,
-			{ stdio: "inherit" }
+			`node "${cliPath}" replace package.json "npm run install" "npm install"`,
+			{ stdio: "inherit", cwd: projectName }
 		)
 	}
 }

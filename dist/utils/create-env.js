@@ -1,10 +1,11 @@
 import { execSync } from "child_process";
-import { slugify } from "@julseb-lib/utils";
 export const createEnv = (projectName) => {
-    execSync(`cp ${slugify(projectName)}/server/template.env ${slugify(projectName)}/server/.env`, {
+    execSync(`cp server/template.env server/.env`, {
         stdio: "inherit",
+        cwd: projectName,
     });
-    execSync(`cp ${slugify(projectName)}/client/template.env ${slugify(projectName)}/client/.env`, {
+    execSync(`cp client/template.env client/.env`, {
         stdio: "inherit",
+        cwd: projectName,
     });
 };
