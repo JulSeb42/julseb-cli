@@ -1,5 +1,5 @@
 import { execSync } from "child_process"
-import { slugify, toTitleCase } from "@julseb-lib/utils"
+import { slugify, toKebabCase, toTitleCase } from "@julseb-lib/utils"
 import { cliPath } from "./cli-path.js"
 
 export const replaceTitlesExpress = (projectName: string) => {
@@ -28,7 +28,25 @@ export const replaceTitlesExpress = (projectName: string) => {
 		{ stdio: "inherit", cwd: projectName }
 	)
 	execSync(
+		`node "${cliPath}" replace client/index.html "julseb-lib-fullstack" "${slugify(
+			projectName
+		)}"`,
+		{ stdio: "inherit", cwd: projectName }
+	)
+	execSync(
 		`node "${cliPath}" replace server/src/utils/consts.ts "julseb-lib-boilerplate-fullstack" "${slugify(
+			projectName
+		)}"`,
+		{ stdio: "inherit", cwd: projectName }
+	)
+	execSync(
+		`node "${cliPath}" replace server/template.env "julseb-lib-fullstack" "${toKebabCase(
+			projectName
+		)}"`,
+		{ stdio: "inherit", cwd: projectName }
+	)
+	execSync(
+		`node "${cliPath}" replace client/template.env "julseb-lib-fullstack" "${toKebabCase(
 			projectName
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
