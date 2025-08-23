@@ -1,6 +1,6 @@
 {
 	"name": "@julseb-lib/julseb-cli",
-	"version": "0.1.14",
+	"version": "0.1.15",
 	"description": "CLI to scaffold a website from GitHub boilerplates",
 	"main": "cli.ts",
 	"bin": {

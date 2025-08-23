@@ -10,7 +10,7 @@ export const replaceTitlesExpress = (projectName: string) => {
 		{ stdio: "inherit", cwd: projectName }
 	)
 	execSync(
-		`node "${cliPath}" replace shared/site-data.ts "julseb-lib-fullstack" "${toTitleCase(
+		`node "${cliPath}" replace client/src/data/site-data.ts "julseb-lib-fullstack" "${toTitleCase(
 			projectName
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
