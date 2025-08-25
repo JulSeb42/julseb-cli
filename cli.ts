@@ -114,6 +114,7 @@ program.argument("[name]", "Project name").action(async name => {
 
 		console.log(`\nReplacing all titles in ${projectName}`)
 		replaceTitlesExpress(projectName)
+		replaceTitlesClient(projectName, "router")
 
 		console.log(`\nCreating .env`)
 		createEnv(projectName)
@@ -128,6 +129,7 @@ program.argument("[name]", "Project name").action(async name => {
 
 		console.log(`\nReplacing all titles in ${projectName}`)
 		replaceTitlesExpress(projectName)
+		replaceTitlesClient(projectName, "tanstack")
 
 		console.log(`\nCreating .env`)
 		createEnv(projectName)

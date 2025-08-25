@@ -1,4 +1,4 @@
-import { slugify, toTitleCase } from "@julseb-lib/utils"
+import { slugify, toKebabCase, toTitleCase } from "@julseb-lib/utils"
 import { execSync } from "child_process"
 import { cliPath } from "./cli-path.js"
 
@@ -24,10 +24,16 @@ export const replaceTitlesClient = (
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
 	)
+	execSync(
+		`node "${cliPath}" replace client/template.env "julseb-lib-fullstack" "${toKebabCase(
+			projectName
+		)}"`,
+		{ stdio: "inherit", cwd: projectName }
+	)
 
 	if (client === "tanstack") {
 		execSync(
-			`node "${cliPath}" replace client/.cta.json "julseb-lib-fullstack" "${slugify(
+			`node "${cliPath}" replace client/.cta.json "julseb-lib-fullstack-client" "${slugify(
 				projectName
 			)}"`,
 			{ stdio: "inherit", cwd: projectName }

@@ -93,6 +93,7 @@ program.argument("[name]", "Project name").action(async (name) => {
         gitClone(2, slugify(projectName));
         console.log(`\nReplacing all titles in ${projectName}`);
         replaceTitlesExpress(projectName);
+        replaceTitlesClient(projectName, "router");
         console.log(`\nCreating .env`);
         createEnv(projectName);
         if (manager !== 0) {
@@ -103,6 +104,7 @@ program.argument("[name]", "Project name").action(async (name) => {
         gitClone(3, slugify(projectName));
         console.log(`\nReplacing all titles in ${projectName}`);
         replaceTitlesExpress(projectName);
+        replaceTitlesClient(projectName, "tanstack");
         console.log(`\nCreating .env`);
         createEnv(projectName);
         if (manager !== 0) {
