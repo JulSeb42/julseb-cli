@@ -7,19 +7,19 @@ export const replaceTitlesClientApp = (
 	client: "router" | "tanstack"
 ) => {
 	execSync(
-		`node "${cliPath}" replace package.json "julseb-lib-fullstack" "${slugify(
+		`node "${cliPath}" replace package.json "julseb-lib-client" "${slugify(
 			projectName
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
 	)
 	execSync(
-		`node "${cliPath}" replace index.html "julseb-lib-fullstack" "${toTitleCase(
+		`node "${cliPath}" replace index.html "julseb-lib-client" "${toTitleCase(
 			projectName
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
 	)
 	execSync(
-		`node "${cliPath}" replace src/data/site-data.ts "julseb-lib-fullstack" "${toTitleCase(
+		`node "${cliPath}" replace src/data/site-data.ts "julseb-lib-client" "${toTitleCase(
 			projectName
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
@@ -27,7 +27,7 @@ export const replaceTitlesClientApp = (
 
 	if (client === "tanstack") {
 		execSync(
-			`node "${cliPath}" replace .cta.json "julseb-lib-fullstack" "${slugify(
+			`node "${cliPath}" replace .cta.json "julseb-lib-client" "${slugify(
 				projectName
 			)}"`,
 			{ stdio: "inherit", cwd: projectName }
