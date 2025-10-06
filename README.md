@@ -39,6 +39,11 @@ $ julseb-cli <your-project-name>
 - Utilities: `utils/`
 - Build: `tsc`
 
+## Coming soon
+
+- Next.js App router
+- Next.js Pages router
+
 ## License
 
 MIT
