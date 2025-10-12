@@ -23,6 +23,10 @@ export const projectTypes = [
         title: "Tanstack Router client only",
         repo: "https://github.com/JulSeb42/boilerplate-tanstack-client.git",
     },
+    {
+        title: "Next.js app router",
+        repo: "https://github.com/JulSeb42/boilerplate-next-app.git",
+    },
 ];
 export const packageManagers = [
     { title: "pnpm", installCommand: "pnpm install", runCommand: "pnpm" },

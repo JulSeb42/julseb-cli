@@ -34,6 +34,10 @@ export const projectTypes: Array<Project> = [
 		title: "Tanstack Router client only",
 		repo: "https://github.com/JulSeb42/boilerplate-tanstack-client.git",
 	},
+	{
+		title: "Next.js app router",
+		repo: "https://github.com/JulSeb42/boilerplate-next-app.git",
+	},
 ]
 
 export const packageManagers: Array<PackageManager> = [

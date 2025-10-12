@@ -9,6 +9,7 @@ import { projectTypes, packageManagers } from "./utils/consts.js";
 import { gitClone } from "./utils/git-clone.js";
 import { replaceTitlesClient } from "./utils/replace-titles-client.js";
 import { replaceTitlesFlask } from "./utils/replace-titles-flask.js";
+import { replaceTitlesNext } from "./utils/replace-titles-next.js";
 import { createEnv } from "./utils/create-env.js";
 import { replacePackageManager } from "./utils/replace-package-manager.js";
 import { replaceTitlesExpress } from "./utils/replace-titles-express.js";
@@ -125,6 +126,16 @@ program.argument("[name]", "Project name").action(async (name) => {
         gitClone(5, slugify(projectName));
         console.log(`\nReplacing all titles in ${projectName}`);
         replaceTitlesClientApp(projectName, "tanstack");
+        console.log(`\nCreating .env`);
+        createEnvClient(projectName);
+        if (manager !== packageManagers[0]) {
+            replacePackageManagerClient(projectName, manager);
+        }
+    }
+    if (type === 6) {
+        gitClone(6, slugify(projectName));
+        console.log(`\nReplacing all titles in ${projectName}`);
+        replaceTitlesNext(projectName);
         console.log(`\nCreating .env`);
         createEnvClient(projectName);
         if (manager !== packageManagers[0]) {

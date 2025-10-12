@@ -4,7 +4,7 @@ A CLI tool to generate boilerplate projects using @julseb-lib/react, with suppor
 
 ## Features
 - Generate React + TypeScript boilerplates
-- Server with either Express & TypeScript, or Flask
+- Server with either Express & TypeScript, Flask, or a Next.js app
 - Choose project type and package manager interactively
 - Replace text in files via CLI command
 - Automate project setup steps
@@ -41,7 +41,6 @@ $ julseb-cli <your-project-name>
 
 ## Coming soon
 
-- Next.js App router
 - Next.js Pages router
 
 ## License
