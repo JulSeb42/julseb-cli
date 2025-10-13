@@ -8,6 +8,7 @@ A CLI tool to generate boilerplate projects using @julseb-lib/react, with suppor
 - Choose project type and package manager interactively
 - Replace text in files via CLI command
 - Automate project setup steps
+- Generators with Plop.js included (and customisable) to speed up your development process
 
 ## Usage
 
@@ -41,6 +42,7 @@ $ julseb-cli <your-project-name>
 
 ## Coming soon
 
+- Boilerplates with GraphQL APIs
 - Next.js Pages router
 
 ## License
