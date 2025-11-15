@@ -16,7 +16,7 @@ export const replaceTitlesNext = (projectName: string) => {
 		{ stdio: "inherit", cwd: projectName }
 	)
 	execSync(
-		`node "${cliPath}" replace src/app/api/uploader/file-uploader/route.ts "julseb-lib-next" "${toKebabCase(
+		`node "${cliPath}" replace src/app/api/uploader/upload-picture/route.ts "julseb-lib-next" "${toKebabCase(
 			projectName
 		)}"`,
 		{ stdio: "inherit", cwd: projectName }
