@@ -1,9 +1,10 @@
-import { execSync } from "child_process";
 import { slugify, toKebabCase } from "@julseb-lib/utils";
-import { cliPath } from "./cli-path.js";
+import { runReplace as run } from "./run-replace.js";
 export const replaceTitlesExpress = (projectName) => {
-    execSync(`node "${cliPath}" replace package.json "julseb-lib-fullstack" "${slugify(projectName)}"`, { stdio: "inherit", cwd: projectName });
-    execSync(`node "${cliPath}" replace server/package.json "julseb-lib-fullstack" "${slugify(projectName)}"`, { stdio: "inherit", cwd: projectName });
-    execSync(`node "${cliPath}" replace server/src/utils/consts.ts "julseb-lib-boilerplate-fullstack" "${slugify(projectName)}"`, { stdio: "inherit", cwd: projectName });
-    execSync(`node "${cliPath}" replace server/template.env "julseb-lib-fullstack" "${toKebabCase(projectName)}"`, { stdio: "inherit", cwd: projectName });
+    const runReplace = (filePath, searchValue, replaceValue) => run(projectName, filePath, searchValue, replaceValue);
+    runReplace("package.json", "julseb-lib-fullstack", slugify(projectName));
+    runReplace("server/package.json", "julseb-lib-fullstack", slugify(projectName));
+    runReplace("server/src/utils/consts.ts", "julseb-lib-boilerplate-fullstack", slugify(projectName));
+    runReplace("server/src/config/cloudinary.config.ts", "julseb-lib-fullstack", slugify(projectName));
+    runReplace("server/template.env", "julseb-lib-fullstack", toKebabCase(projectName));
 };

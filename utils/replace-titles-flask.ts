@@ -1,36 +1,37 @@
 import { slugify, toKebabCase, toTitleCase } from "@julseb-lib/utils"
-import { execSync } from "child_process"
-import { cliPath } from "./cli-path.js"
+import { runReplace as run } from "./run-replace.js"
 
 export const replaceTitlesFlask = (projectName: string) => {
-	execSync(
-		`node "${cliPath}" replace package.json "julseb-lib-fullstack" "${slugify(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	const runReplace = (
+		filePath: string,
+		searchValue: string,
+		replaceValue: string
+	) => run(projectName, filePath, searchValue, replaceValue)
+
+	runReplace("package.json", "julseb-lib-fullstack", slugify(projectName))
+	runReplace(
+		"server/pyproject.toml",
+		"julseb-lib-fullstack",
+		slugify(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace server/pyproject.toml "julseb-lib-fullstack" "${slugify(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"server/src/utils/consts.py",
+		"julseb-lib-fullstack",
+		toTitleCase(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace server/src/utils/consts.py "julseb-lib-fullstack" "${toTitleCase(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"server/template.env",
+		"julseb-lib-fullstack",
+		toKebabCase(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace server/template.env "julseb-lib-fullstack" "${toKebabCase(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"server/src/routes/cloudinary.py",
+		"julseb-lib-fullstack",
+		toKebabCase(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace client/template.env "julseb-lib-fullstack" "${toKebabCase(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"client/template.env",
+		"julseb-lib-fullstack",
+		toKebabCase(projectName)
 	)
 }

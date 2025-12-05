@@ -80,126 +80,128 @@ program.argument("[name]", "Project name").action(async name => {
 
 	console.log(`\n📦 Creating project "${projectName}"...`)
 
+	const slugifiedProjectName = slugify(projectName)
+
 	if (type === 0) {
-		gitClone(0, slugify(projectName))
+		gitClone(0, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesFlask(projectName)
-		replaceTitlesClient(projectName, "router")
+		replaceTitlesFlask(slugifiedProjectName)
+		replaceTitlesClient(slugifiedProjectName, "router")
 
 		console.log(`\nCreating .env`)
-		createEnv(projectName)
+		createEnv(slugifiedProjectName)
 
 		if (manager !== 0) {
-			replacePackageManager(projectName, manager)
+			replacePackageManager(slugifiedProjectName, manager)
 		}
 	}
 
 	if (type === 1) {
-		gitClone(1, slugify(projectName))
+		gitClone(1, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesFlask(projectName)
-		replaceTitlesClient(projectName, "tanstack")
+		replaceTitlesFlask(slugifiedProjectName)
+		replaceTitlesClient(slugifiedProjectName, "tanstack")
 
 		console.log(`\nCreating .env`)
-		createEnv(projectName)
+		createEnv(slugifiedProjectName)
 
 		if (manager !== 0) {
-			replacePackageManager(projectName, manager)
+			replacePackageManager(slugifiedProjectName, manager)
 		}
 	}
 
 	if (type === 2) {
-		gitClone(2, slugify(projectName))
+		gitClone(2, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesExpress(projectName)
-		replaceTitlesClient(projectName, "router")
+		replaceTitlesExpress(slugifiedProjectName)
+		replaceTitlesClient(slugifiedProjectName, "router")
 
 		console.log(`\nCreating .env`)
-		createEnv(projectName)
+		createEnv(slugifiedProjectName)
 
 		if (manager !== 0) {
-			replacePackageManager(projectName, manager, true)
+			replacePackageManager(slugifiedProjectName, manager, true)
 		}
 	}
 
 	if (type === 3) {
-		gitClone(3, slugify(projectName))
+		gitClone(3, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesExpress(projectName)
-		replaceTitlesClient(projectName, "tanstack")
+		replaceTitlesExpress(slugifiedProjectName)
+		replaceTitlesClient(slugifiedProjectName, "tanstack")
 
 		console.log(`\nCreating .env`)
-		createEnv(projectName)
+		createEnv(slugifiedProjectName)
 
 		if (manager !== 0) {
-			replacePackageManager(projectName, manager, true)
+			replacePackageManager(slugifiedProjectName, manager, true)
 		}
 	}
 
 	if (type === 4) {
-		gitClone(4, slugify(projectName))
+		gitClone(4, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesClientApp(projectName, "router")
+		replaceTitlesClientApp(slugifiedProjectName, "router")
 
 		console.log(`\nCreating .env`)
-		createEnvClient(projectName)
+		createEnvClient(slugifiedProjectName)
 
 		if (manager !== packageManagers[0]) {
-			replacePackageManagerClient(projectName, manager)
+			replacePackageManagerClient(slugifiedProjectName, manager)
 		}
 	}
 
 	if (type === 5) {
-		gitClone(5, slugify(projectName))
+		gitClone(5, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesClientApp(projectName, "tanstack")
+		replaceTitlesClientApp(slugifiedProjectName, "tanstack")
 
 		console.log(`\nCreating .env`)
-		createEnvClient(projectName)
+		createEnvClient(slugifiedProjectName)
 
 		if (manager !== packageManagers[0]) {
-			replacePackageManagerClient(projectName, manager)
+			replacePackageManagerClient(slugifiedProjectName, manager)
 		}
 	}
 
 	if (type === 6) {
-		gitClone(6, slugify(projectName))
+		gitClone(6, slugifiedProjectName)
 
 		console.log(`\nReplacing all titles in ${projectName}`)
-		replaceTitlesNext(projectName)
+		replaceTitlesNext(slugifiedProjectName)
 
 		console.log(`\nCreating .env`)
-		createEnvClient(projectName)
+		createEnvClient(slugifiedProjectName)
 
 		if (manager !== packageManagers[0]) {
-			replacePackageManagerClient(projectName, manager)
+			replacePackageManagerClient(slugifiedProjectName, manager)
 		}
 	}
 
 	console.log(`\n📁 Init git`)
 	execSync(`rm -rf .git`, {
 		stdio: "inherit",
-		cwd: projectName,
+		cwd: slugifiedProjectName,
 	})
 	execSync(
 		`git init && git checkout -b master && git add . && git commit -m "Initial commit"`,
-		{ stdio: "inherit", cwd: projectName }
+		{ stdio: "inherit", cwd: slugifiedProjectName }
 	)
 
 	console.log(`\n📥 Installing all your packages, this may take a while...`)
 	execSync(packageManagers[manager].installCommand, {
 		stdio: "inherit",
-		cwd: projectName,
+		cwd: slugifiedProjectName,
 	})
 
 	console.log(
-		`\n🚀 Done! cd into ${projectName} and start coding!${
+		`\n🚀 Done! cd into ${slugifiedProjectName} and start coding!${
 			type === 0 || type === 1
 				? " Don't forget to activate the virtual environment!"
 				: ""

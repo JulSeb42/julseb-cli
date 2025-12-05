@@ -1,42 +1,42 @@
 import { slugify, toKebabCase, toTitleCase } from "@julseb-lib/utils"
-import { execSync } from "child_process"
-import { cliPath } from "./cli-path.js"
+import { runReplace as run } from "./run-replace.js"
 
 export const replaceTitlesClient = (
 	projectName: string,
 	client: "router" | "tanstack"
 ) => {
-	execSync(
-		`node "${cliPath}" replace client/package.json "julseb-lib-fullstack" "${slugify(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	const runReplace = (
+		filePath: string,
+		searchValue: string,
+		replaceValue: string
+	) => run(projectName, filePath, searchValue, replaceValue)
+
+	runReplace(
+		"client/package.json",
+		"julseb-lib-fullstack",
+		slugify(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace client/index.html "julseb-lib-fullstack" "${toTitleCase(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"client/index.html",
+		"julseb-lib-fullstack",
+		toTitleCase(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace client/src/data/site-data.ts "julseb-lib-fullstack" "${toTitleCase(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"client/src/data/site-data.ts",
+		"julseb-lib-fullstack",
+		toTitleCase(projectName)
 	)
-	execSync(
-		`node "${cliPath}" replace client/template.env "julseb-lib-fullstack" "${toKebabCase(
-			projectName
-		)}"`,
-		{ stdio: "inherit", cwd: projectName }
+	runReplace(
+		"client/template.env",
+		"julseb-lib-fullstack",
+		toKebabCase(projectName)
 	)
 
 	if (client === "tanstack") {
-		execSync(
-			`node "${cliPath}" replace client/.cta.json "julseb-lib-fullstack-client" "${slugify(
-				projectName
-			)}"`,
-			{ stdio: "inherit", cwd: projectName }
+		runReplace(
+			"client/.cta.json",
+			"julseb-lib-fullstack-client",
+			slugify(projectName)
 		)
 	}
 }
