@@ -8,7 +8,11 @@ export const replaceTitlesNextPage = (projectName: string) => {
 		replaceValue: string,
 	) => run(projectName, filePath, searchValue, replaceValue)
 
-	runReplace("package.json", "julseb-lib-next", toKebabCase(projectName))
+	runReplace(
+		"package.json",
+		"boilerplate-next-page",
+		toKebabCase(projectName),
+	)
 	runReplace(
 		"src/data/site-data.ts",
 		"julseb-lib-next",
