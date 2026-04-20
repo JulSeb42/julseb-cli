@@ -11,6 +11,7 @@ import { gitClone } from "./utils/git-clone.js"
 import { replaceTitlesClient } from "./utils/replace-titles-client.js"
 import { replaceTitlesFlask } from "./utils/replace-titles-flask.js"
 import { replaceTitlesNext } from "./utils/replace-titles-next.js"
+import { replaceTitlesNextPage } from "./utils/replace-titles-next-page.js"
 import { createEnv } from "./utils/create-env.js"
 import { replacePackageManager } from "./utils/replace-package-manager.js"
 import { replaceTitlesExpress } from "./utils/replace-titles-express.js"
@@ -175,6 +176,20 @@ program.argument("[name]", "Project name").action(async name => {
 
 		console.log(`\nReplacing all titles in ${projectName}`)
 		replaceTitlesNext(slugifiedProjectName)
+
+		console.log(`\nCreating .env`)
+		createEnvClient(slugifiedProjectName)
+
+		if (manager !== packageManagers[0]) {
+			replacePackageManagerClient(slugifiedProjectName, manager)
+		}
+	}
+
+	if (type === 7) {
+		gitClone(7, slugifiedProjectName)
+
+		console.log(`\nReplacing all titles in ${projectName}`)
+		replaceTitlesNextPage(slugifiedProjectName)
 
 		console.log(`\nCreating .env`)
 		createEnvClient(slugifiedProjectName)

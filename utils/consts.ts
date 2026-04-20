@@ -38,6 +38,10 @@ export const projectTypes: Array<Project> = [
 		title: "Next.js app router",
 		repo: "https://github.com/JulSeb42/boilerplate-next-app.git",
 	},
+	{
+		title: "Next.js pages router",
+		repo: "https://github.com/JulSeb42/boilerplate-next-pages.git",
+	},
 ]
 
 export const packageManagers: Array<PackageManager> = [

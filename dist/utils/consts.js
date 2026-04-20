@@ -27,6 +27,10 @@ export const projectTypes = [
         title: "Next.js app router",
         repo: "https://github.com/JulSeb42/boilerplate-next-app.git",
     },
+    {
+        title: "Next.js pages router",
+        repo: "https://github.com/JulSeb42/boilerplate-next-pages.git",
+    },
 ];
 export const packageManagers = [
     { title: "pnpm", installCommand: "pnpm install", runCommand: "pnpm" },
